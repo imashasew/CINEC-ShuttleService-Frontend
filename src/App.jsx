@@ -23,6 +23,7 @@ import St from './pages/Student';
 import Sta from './pages/Staff';
 import Shu from './pages/Shuttles';
 import Inco from './pages/Income';
+import Dri from './pages/Driver';
 
 
 
@@ -50,7 +51,7 @@ function App() {
 
     {/*routings are sown on below un-comment the routing you want and proceed*/}
     
-    {/* Users side routing */}
+    {/* Users side routing }
 
       {<BrowserRouter>
         <Routes>
@@ -70,7 +71,7 @@ function App() {
         <Route path='/setAlarm' element={<AlarmForm/>} ></Route>
         <Route path='/schedule' element={<Schedule/>} ></Route>
         </Routes>
-      </BrowserRouter> }
+      </BrowserRouter> */}
       
     {/* If you want to route DRIVER side interfaces please comment the user side routing and un-comment following routing  }
 
@@ -83,7 +84,7 @@ function App() {
         </Routes>
       </BrowserRouter>*/}
     
-    {/*If you want to route admin side interfaces please comment the user side routing and driver side routing and then un-comment following routing}
+    {/*If you want to route admin side interfaces please comment the user side routing and driver side routing and then un-comment following routing*/}
 
       {<BrowserRouter>
         <Routes>
@@ -93,9 +94,10 @@ function App() {
         <Route path='/staff' element={<Sta/>} ></Route>
         <Route path='/shuttles' element={<Shu/>} ></Route>
         <Route path='/income' element={<Inco/>} ></Route>
+        <Route path='/driver' element={<Dri/>} ></Route>
         
         </Routes>
-      </BrowserRouter>*/}
+      </BrowserRouter>}
 
       
 

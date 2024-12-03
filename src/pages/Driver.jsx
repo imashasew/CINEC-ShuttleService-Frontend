@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Button, Paper, Drawer, List, ListItem, ListItemIcon, ListItemText, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, InputBase, useMediaQuery } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Button, Paper, Drawer, List, ListItem, ListItemIcon, ListItemText, Grid, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Avatar, InputBase, useMediaQuery,Box } from '@mui/material';
 import { Menu, Search, People, DirectionsBus, AccountBalanceWallet, Help, Settings, Person, Notifications } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+
 
 const Dri = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -11,6 +13,7 @@ const Dri = () => {
     setMobileOpen(!mobileOpen);
   };
 
+ 
   return (
     <div style={{ display: 'flex' }}>
       <Sidebar mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle} />
@@ -25,40 +28,64 @@ const Dri = () => {
 const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   const theme = useTheme();
   const isSmDown = useMediaQuery(theme.breakpoints.down('sm'));
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(3);
 
   const handleListItemClick = (index) => {
     setSelectedIndex(index);
   };
 
   const drawerContent = (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+      }}
+    >
       <div style={{ padding: '16px', marginLeft: '18px' }}>
         <img src="/src/assets/cinec.png" alt="logo" width={100} height={50} />
       </div>
       <List>
-        {['Dashboard', 'Students', 'Staff', 'Shuttles', 'Income', 'Help', 'Setting'].map((text, index) => (
-          <ListItem
-            button
-            key={text}
-            selected={selectedIndex === index}
-            onClick={() => handleListItemClick(index)}
-            sx={{
-              color: selectedIndex === index ? 'white' : 'inherit',
-              backgroundColor: selectedIndex === index ? 'secondary.light2' : 'inherit',
-              '&:hover': {
-                backgroundColor: selectedIndex === index ? 'secondary.light2' : 'white',
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: selectedIndex === index ? 'white' : 'inherit' }}>
-              {index === 0 ? <People /> : index === 1 ? <Person /> : index === 2 ? <People /> : index === 3 ? <DirectionsBus /> : index === 4 ? <AccountBalanceWallet /> : index === 5 ? <Help /> : <Settings />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {['Dashboard', 'Students', 'Staff', 'Shuttles', 'Income'].map((text, index) => (
+          <Link to={`/${text.toLowerCase()}`} key={text} style={{ textDecoration: 'none', color:'black' }}>
+            <ListItem
+              button
+              selected={selectedIndex === index}
+              onClick={() => handleListItemClick(index)}
+              sx={{
+                color: selectedIndex === index ? 'white' : 'inherit',  // Set text color to black for selected item
+                backgroundColor: selectedIndex === index ? 'secondary.light2' : 'inherit',
+                '&:hover': {
+                  backgroundColor: selectedIndex === index ? 'secondary.light2' : 'white',
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: selectedIndex === index ? 'black' : 'inherit' }}>  {/* Set icon color to black */}
+                {index === 0 ? <People /> : index === 1 ? <Person /> : index === 2 ? <People /> : index === 3 ? <DirectionsBus /> : <AccountBalanceWallet />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          </Link>
         ))}
       </List>
-    </>
+      {/* Spacer to push the logout button to the bottom */}
+      <Box sx={{ flexGrow: 1 }} />
+      <Box sx={{ padding: 5, }}>
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{
+            backgroundColor: '#1E67BB',
+            '&:hover': {
+              backgroundColor: 'secondary.light2',
+              color:'black'
+            },
+          }}
+        >
+          Logout
+        </Button>
+      </Box>
+    </Box>
   );
 
   return (
@@ -153,14 +180,13 @@ const Header = ({ handleDrawerToggle }) => {
     </AppBar>
   );
 };
-
 const MainContent = () => {
   return (
     <div style={{ padding: '16px' }}>
       
       <Grid container spacing={2} sx={{ marginTop: '16px' }}>
         <Grid item xs={12} md={12}>
-          <NewShuttles />
+         <NewShuttles/>
         </Grid>
         
       </Grid>
@@ -171,46 +197,46 @@ const MainContent = () => {
 
 
 const NewShuttles = () => {
-    const shuttles = [
-      { profile: 'Gamini Perera', icon: <Avatar>G</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022' },
-      { profile: 'W. Wickramasinghe', icon: <Avatar>G</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022'  },
-      { profile: 'S.Perera', icon: <Avatar>W</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022'  },
-    ];
-  
-    return (
-      <Paper sx={{ padding: '16px' }}>
-        <Typography variant="h6">Gampaha I - Driver's Details</Typography>
-        <Button variant="contained" sx={{ float: 'right', marginBottom: '8px',backgroundColor:'secondary.light','&:hover': {
-             backgroundColor:'secondary.light2',
-             }, }}>View All</Button>
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Profile</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Contact No.</TableCell>
-                <TableCell>Age</TableCell>
-                <TableCell>Joined date</TableCell>
+  const shuttles = [
+    { profile: 'Gamini Perera', icon: <Avatar>G</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022' },
+    { profile: 'W. Wickramasinghe', icon: <Avatar>G</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022'  },
+    { profile: 'S.Perera', icon: <Avatar>W</Avatar>, cno:'071 123 4567', age:'47', jdate: '12.12.2022'  },
+  ];
+
+  return (
+    <Paper sx={{ padding: '16px',boxShadow:'3' }}>
+      <Typography variant="h6">Gampaha I - Driver's Details</Typography>
+      <Button href='/shuttles' variant="contained" sx={{ float: 'right', marginBottom: '10px',marginRight:'20px',marginTop:'-20px',backgroundColor:'secondary.light','&:hover': {
+           backgroundColor:'secondary.light2',
+           }, }}>Back</Button>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Profile</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Contact No.</TableCell>
+              <TableCell>Age</TableCell>
+              <TableCell>Joined date</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {shuttles.map((shuttle, index) => (
+              <TableRow key={index}>
+                <TableCell>{shuttle.icon}</TableCell>
+                <TableCell>{shuttle.profile}</TableCell>
+                <TableCell>{shuttle.cno}</TableCell>
+                <TableCell>{shuttle.age}</TableCell>
+                <TableCell>{shuttle.jdate}</TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {shuttles.map((shuttle, index) => (
-                <TableRow key={index}>
-                  <TableCell>{shuttle.icon}</TableCell>
-                  <TableCell>{shuttle.profile}</TableCell>
-                  <TableCell>{shuttle.cno}</TableCell>
-                  <TableCell>{shuttle.age}</TableCell>
-                  <TableCell>{shuttle.jdate}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
-    );
-  };
-  
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Paper>
+  );
+};
+
 
 
 export default Dri;

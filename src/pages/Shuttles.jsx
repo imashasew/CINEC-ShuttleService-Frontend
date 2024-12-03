@@ -222,7 +222,7 @@ const RecentPayments = () => {
                 <TableCell>{payment.shid}</TableCell>
                 <TableCell>{payment.vno}</TableCell>
                 <TableCell>{payment.rou}</TableCell>
-                <TableCell><Button sx={{color:'secondary.light','&:hover': {
+                <TableCell><Button href='/driver'  sx={{color:'secondary.light','&:hover': {
                     color:'secondary.light2',
                     },}}>View</Button></TableCell>
                 <TableCell><Button sx={{color:'secondary.light','&:hover': {
