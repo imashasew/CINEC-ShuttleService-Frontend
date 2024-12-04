@@ -51,9 +51,9 @@ function App() {
 
     {/*routings are sown on below un-comment the routing you want and proceed*/}
     
-    {/* Users side routing }
+    {/* Users side routing */}
 
-      {<BrowserRouter>
+      <BrowserRouter>
         <Routes>
         <Route index element={<Interaction/>} ></Route>
         <Route path='/signup' element={<SignUp/>} ></Route>
@@ -69,35 +69,18 @@ function App() {
         <Route path='/payment' element={<Payment/>} ></Route>
         <Route path='/booking' element={<TransportBookingForm/>} ></Route>
         <Route path='/setAlarm' element={<AlarmForm/>} ></Route>
-        <Route path='/schedule' element={<Schedule/>} ></Route>
-        </Routes>
-      </BrowserRouter> */}
-      
-    {/* If you want to route DRIVER side interfaces please comment the user side routing and un-comment following routing  }
-
-      {<BrowserRouter>
-        <Routes>
-        <Route index element={<SignIn2/>} ></Route>
+        <Route path='/schedule' element={<Schedule/>} ></Route>    
         <Route path='/signin2' element={<SignIn2/>} ></Route>
         <Route path='/shuttleService' element={<ShuttleService/>} ></Route>
         <Route path='/shuttleService2' element={<ShuttleService2/>} ></Route>  
-        </Routes>
-      </BrowserRouter>*/}
-    
-    {/*If you want to route admin side interfaces please comment the user side routing and driver side routing and then un-comment following routing*/}
-
-      {<BrowserRouter>
-        <Routes>
-        <Route index element={<Admin/>} ></Route>
-        <Route path='/dashboard' element={<Admin/>} ></Route>
+        <Route path='/admin' element={<Admin/>} ></Route>
         <Route path='/students' element={<St/>} ></Route>
         <Route path='/staff' element={<Sta/>} ></Route>
         <Route path='/shuttles' element={<Shu/>} ></Route>
         <Route path='/income' element={<Inco/>} ></Route>
-        <Route path='/driver' element={<Dri/>} ></Route>
-        
+        <Route path='/driver' element={<Dri/>} ></Route>       
         </Routes>
-      </BrowserRouter>}
+      </BrowserRouter>
 
       
 

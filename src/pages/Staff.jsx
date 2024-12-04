@@ -4,7 +4,7 @@ import { Menu, Search, People, DirectionsBus, AccountBalanceWallet, Help, Settin
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom'; // Import the hook
 
 const Sta = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -29,9 +29,11 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
   const theme = useTheme();
   const isSmDown = useMediaQuery(theme.breakpoints.down('sm'));
   const [selectedIndex, setSelectedIndex] = useState(2);
+  const navigate = useNavigate(); // Initialize the hook
 
-  const handleListItemClick = (index) => {
+  const handleListItemClick = (index, route) => {
     setSelectedIndex(index);
+    navigate(route); // Navigate to the specified route
   };
 
   const drawerContent = (
@@ -46,31 +48,45 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
         <img src="/src/assets/cinec.png" alt="logo" width={100} height={50} />
       </div>
       <List>
-        {['Dashboard', 'Students', 'Staff', 'Shuttles', 'Income'].map((text, index) => (
-          <Link to={`/${text.toLowerCase()}`} key={text} style={{ textDecoration: 'none', color:'black' }}>
-            <ListItem
-              button
-              selected={selectedIndex === index}
-              onClick={() => handleListItemClick(index)}
-              sx={{
-                color: selectedIndex === index ? 'white' : 'inherit',  // Set text color to black for selected item
-                backgroundColor: selectedIndex === index ? 'secondary.light2' : 'inherit',
-                '&:hover': {
-                  backgroundColor: selectedIndex === index ? 'secondary.light2' : 'white',
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: selectedIndex === index ? 'black' : 'inherit' }}>  {/* Set icon color to black */}
-                {index === 0 ? <People /> : index === 1 ? <Person /> : index === 2 ? <People /> : index === 3 ? <DirectionsBus /> : <AccountBalanceWallet />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          </Link>
+        {[
+          { text: 'Dashboard', route: '/admin' },
+          { text: 'Students', route: '/students' },
+          { text: 'Staff', route: '/staff' },
+          { text: 'Shuttles', route: '/shuttles' },
+          { text: 'Income', route: '/income' },
+        ].map((item, index) => (
+          <ListItem
+            button
+            key={item.text}
+            selected={selectedIndex === index}
+            onClick={() => handleListItemClick(index, item.route)}
+            sx={{
+              color: selectedIndex === index ? 'white' : 'inherit',
+              backgroundColor: selectedIndex === index ? 'secondary.light2' : 'inherit',
+              '&:hover': {
+                backgroundColor: selectedIndex === index ? 'secondary.light2' : 'white',
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: selectedIndex === index ? 'black' : 'inherit' }}>
+              {index === 0 ? (
+                <People />
+              ) : index === 1 ? (
+                <Person />
+              ) : index === 2 ? (
+                <People />
+              ) : index === 3 ? (
+                <DirectionsBus />
+              ) : (
+                <AccountBalanceWallet />
+              )}
+            </ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItem>
         ))}
       </List>
-      {/* Spacer to push the logout button to the bottom */}
       <Box sx={{ flexGrow: 1 }} />
-      <Box sx={{ padding: 5, }}>
+      <Box sx={{ padding: 5 }}>
         <Button
           variant="contained"
           fullWidth
@@ -78,7 +94,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
             backgroundColor: '#1E67BB',
             '&:hover': {
               backgroundColor: 'secondary.light2',
-              color:'black'
+              color: 'black',
             },
           }}
         >
