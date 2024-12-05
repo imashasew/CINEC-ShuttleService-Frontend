@@ -226,22 +226,25 @@ const DashboardStats = () => {
     <Grid container spacing={4}>
       {stats.map((stat) => (
         <Grid item xs={3} key={stat.label}>
-          <Paper sx={{ padding: '18px', textAlign: 'center',
-            transition: 'transform 0.3s, box-shadow 0.3s',
-            '&:hover': {
-              transform: 'scale(1.05) translateY(-5px)',
-              boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.2)',
-            },
-           }}>
+          <Paper
+            style={{
+              padding: '18px',
+              textAlign: 'center',
+              boxShadow: '1px 0px 10px 4px rgba(0, 0, 0, 0.1)', // Adds a 3D-like shadow effect
+              borderRadius: '8px', // Rounds the corners slightly for a polished look
+             
+            }}
+          >
             {stat.icon}
             <Typography variant="h5">{stat.value}</Typography>
             <Typography variant="subtitle1">{stat.label}</Typography>
           </Paper>
-        </Grid >
+        </Grid>
       ))}
-    </Grid >
+    </Grid>
   );
 };
+
 
 const RecentPayments = () => {
   const payments = Array(5).fill({ name: 'John Doe', email: 'abs@gmail.com', phone:'071 123 4567', sid:'123456', shuttle: 'Gampaha I', lpdate: '20.11.2024' });
