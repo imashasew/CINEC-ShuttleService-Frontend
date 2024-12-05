@@ -24,6 +24,7 @@ import Sta from './pages/Staff';
 import Shu from './pages/Shuttles';
 import Inco from './pages/Income';
 import Dri from './pages/Driver';
+import AdminLogin from './pages/AdminLogin';
 
 
 
@@ -73,12 +74,13 @@ function App() {
         <Route path='/signin2' element={<SignIn2/>} ></Route>
         <Route path='/shuttleService' element={<ShuttleService/>} ></Route>
         <Route path='/shuttleService2' element={<ShuttleService2/>} ></Route>  
-        <Route path='/admin' element={<Admin/>} ></Route>
+        <Route path='/admindashboard' element={<Admin/>} ></Route>
         <Route path='/students' element={<St/>} ></Route>
         <Route path='/staff' element={<Sta/>} ></Route>
         <Route path='/shuttles' element={<Shu/>} ></Route>
         <Route path='/income' element={<Inco/>} ></Route>
-        <Route path='/driver' element={<Dri/>} ></Route>       
+        <Route path='/driver' element={<Dri/>} ></Route> 
+        <Route path='/admin' element={<AdminLogin/>} ></Route>         
         </Routes>
       </BrowserRouter>
 

@@ -50,7 +50,7 @@ const Sidebar = ({ mobileOpen, handleDrawerToggle }) => {
       </div>
       <List>
         {[
-          { text: 'Dashboard', route: '/admin' },
+          { text: 'Dashboard', route: '/admindashboard' },
           { text: 'Students', route: '/students' },
           { text: 'Staff', route: '/staff' },
           { text: 'Shuttles', route: '/shuttles' },
