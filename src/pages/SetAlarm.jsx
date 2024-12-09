@@ -236,10 +236,6 @@ const SetAlarmSection = () => (
 
 
 const AlarmForm = () => {
-
-  
-
- 
   const activeDays = ['M', 'Tu', 'W', 'Th', 'F', 'Sa', 'Su'];
 
   return (
